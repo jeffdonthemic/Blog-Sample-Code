@@ -1,0 +1,33 @@
+<apex:page controller="ActionFunctionDemoController">
+ <apex:sectionHeader title="Action Function Demo" subtitle="Save a New Record"/>
+
+  <apex:form >
+ 
+  <apex:outputPanel id="jspanel"> 
+  <script>  
+  function onControllerReturn() {
+    alert('{!message}')
+  }
+  </script>
+  </apex:outputPanel>
+ 
+  <apex:actionFunction name="doControllerSave" action="{!save}" rerender="jspanel"/>
+ 
+  <apex:pageBlock id="blockSection">
+
+  <apex:pageBlockButtons >
+    <apex:commandButton onclick="doControllerSave();" oncomplete="onControllerReturn()" value="Save"/>
+  </apex:pageBlockButtons>
+  <apex:pageMessages />
+
+  <apex:pageBlockSection columns="1">
+    <apex:inputField value="{!cat.name}"/>  
+    <apex:inputField value="{!cat.Cat2__c}"/>  
+  </apex:pageBlockSection>
+
+  </apex:pageBlock>
+  </apex:form>
+ 
+  Submit the form to successfully create a record. To generate an error, remove the value for 'Cat2' and save.
+
+</apex:page>

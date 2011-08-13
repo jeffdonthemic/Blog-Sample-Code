@@ -1,0 +1,21 @@
+<apex:page controller="DisplaySectionsController" action="{!load}" sidebar="false">
+  <apex:sectionHeader title="My Sample Display Page" subtitle="Group by States" 
+    description="This page shows how you can dynamically group results by field value."/>
+ 
+  <apex:repeat value="{!states}" var="state">
+  
+	  <apex:pageBlock title="{!state}">
+	 
+			 <apex:repeat value="{!accounts}" var="account"> 
+			 
+			   <apex:outputPanel rendered="{!IF(state=account.BillingState,true,false)}">
+			   {!account.Name} - {!account.BillingState}<br/>
+			  </apex:outputPanel>
+			 
+			 </apex:repeat>
+	  
+	  </apex:pageBlock>
+  
+  </apex:repeat>
+  
+</apex:page>

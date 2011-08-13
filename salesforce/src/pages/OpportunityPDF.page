@@ -1,0 +1,24 @@
+<apex:page standardController="Account" showHeader="false" renderAs="pdf">
+	
+	<img src="{!URLFOR($Resource.AppirioLogo)}" border="0"/><p/>
+	
+	Name: {!account.name}<br/>
+	Regional Parent: {!account.parent.name}<br/>
+	Corp Parent: {!account.parent.parent.name}<p/>
+	
+    <table width="100%" cellpadding="2" cellspacing="2">
+    <tr>
+        <td><b>First</b></td>
+        <td><b>Last</b></td>
+        <td><b>Email</b></td>
+    </tr>
+    <apex:repeat value="{!account.contacts}" var="contact">
+    <tr>
+    	<td>{!contact.firstname}</td>
+    	<td>{!contact.lastname}</td>
+    	<td>{!contact.email}</td>
+    </tr>
+    </apex:repeat>
+    </table>
+	
+</apex:page>

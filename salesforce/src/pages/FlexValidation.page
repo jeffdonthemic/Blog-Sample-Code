@@ -1,0 +1,10 @@
+<apex:page >
+
+    <apex:sectionHeader title="Required Field and Validation Example"/>
+    <apex:pageBlock >
+
+	<apex:flash src="{!$Resource.DisplayValidation}"
+		width="500" height="300"/>
+		
+	</apex:pageBlock>
+</apex:page>

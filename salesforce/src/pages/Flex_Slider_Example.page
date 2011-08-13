@@ -1,0 +1,28 @@
+<apex:page standardController="Person__c">
+
+  <apex:sectionHeader title="{!Person__c.First_Name__c} {!Person__c.Last_Name__c}" subtitle="Flex Slider Example"/>
+
+  <apex:form id="myForm">
+        <apex:pageBlock title="Geek Rating" id="myBlock" mode="edit">
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}" />
+            </apex:pageBlockButtons>
+            <apex:pageMessages />
+            
+            <apex:pageBlockSection id="ratings" showHeader="true" title="Contact Info" columns="2">
+                
+                <apex:inputField value="{!Person__c.First_Name__c}"/>
+                <apex:pageBlockSectionItem >    
+                    <apex:outputLabel value="Geek Factor Slider"/>                      
+                    <c:FlexSliderComponent minSliderValue="0" maxSliderValue="10" startSliderValue="{!Person__c.Geek_Factor__c}" boundDomId="{!$Component.ratings.geekfactor}" />
+                </apex:pageBlockSectionItem>     
+                
+                <apex:inputField value="{!Person__c.Last_Name__c}"/>
+                <apex:inputField id="geekfactor" value="{!Person__c.Geek_Factor__c}" />
+                
+            </apex:pageBlockSection>
+        </apex:pageBlock>  
+  </apex:form>
+
+</apex:page>

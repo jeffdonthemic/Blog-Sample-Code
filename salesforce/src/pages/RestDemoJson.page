@@ -1,0 +1,56 @@
+<apex:page controller="RestDemoJsonController" tabStyle="Contact">
+	<apex:sectionHeader title="Google Maps Geocoding" subtitle="REST Demo (JSON)"/> 
+
+     <apex:form >
+     <apex:pageBlock >
+    
+          <apex:pageBlockButtons >
+              <apex:commandButton action="{!submit}" value="Submit" 
+                   rerender="resultsPanel" status="status"/>
+          </apex:pageBlockButtons>
+          <apex:pageMessages />
+              
+          This example calls Google Map's geocoding REST service (JSON) with the address 
+          you provide below.<p/>  
+          
+          Sometimes the geocoding services stops responding due to service availability. If you are receiving errors
+          with the returned JSON object, you can check the "Use hard-coded JSON response" to use a returned JSON
+          response hard-coded into the controller from Google's address.<p/>   
+              
+          <apex:pageBlockSection >
+               <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="address">Address</apex:outputLabel>
+                    <apex:inputText id="address" value="{!address}"/>
+               </apex:pageBlockSectionItem>
+          </apex:pageBlockSection>
+          
+          <apex:pageBlockSection >
+               <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="city">City</apex:outputLabel>
+                    <apex:inputText id="city" value="{!city}"/>
+               </apex:pageBlockSectionItem>
+          </apex:pageBlockSection>
+          
+          <apex:pageBlockSection >
+               <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="state">State</apex:outputLabel>
+                    <apex:inputText id="state" value="{!state}"/>
+               </apex:pageBlockSectionItem>
+          </apex:pageBlockSection><br/>
+          
+          <apex:pageBlockSection >
+               <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="useGoogle">Use hard-coded Google JSON response?</apex:outputLabel>
+                    <apex:inputCheckbox id="useGoogle" value="{!useGoogle}"/>
+               </apex:pageBlockSectionItem>
+          </apex:pageBlockSection><br/>
+              
+          <apex:actionStatus id="status" startText="Fetching map..."/>
+          <apex:outputPanel id="resultsPanel">
+          		<apex:outputText value="{!geoAddress}"/><br/>
+          </apex:outputPanel>
+
+     </apex:pageBlock>
+     </apex:form>
+
+</apex:page>

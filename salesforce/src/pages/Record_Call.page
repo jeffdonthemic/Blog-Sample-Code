@@ -1,0 +1,7 @@
+<apex:page controller="RecordCallController" showHeader="false" contentType="text/xml">
+<Response>
+    <Say>Thanks for howling... take a listen to what you howled.</Say>
+    <Play>{!recordingUrl}</Play>
+    <Say>Goodbye {!callerName}</Say>
+</Response>
+</apex:page>

@@ -1,0 +1,32 @@
+<apex:page controller="DocumentEmailController">
+  <apex:sectionHeader title="Document Example" subtitle="Email a Document" 
+    description="Example of how to email a Document."/>
+
+  <apex:form >
+  	<apex:pageMessages />
+    <apex:pageBlock title="Document Input">
+     
+      <apex:pageBlockButtons >
+        <apex:commandButton action="{!sendDoc}" value="Send Document"/>
+      </apex:pageBlockButtons>
+       
+      <apex:pageBlockSection >
+       
+        <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Email to send to" for="email"/>
+          <apex:inputText value="{!email}" id="email"/>
+        </apex:pageBlockSectionItem>
+        
+        <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Document" for="document"/>
+						<apex:selectList value="{!documentId}" id="document" size="1">
+						     <apex:selectOptions value="{!documents}"/>
+						</apex:selectList>
+        </apex:pageBlockSectionItem>
+       
+      </apex:pageBlockSection>
+
+    </apex:pageBlock>
+  </apex:form>
+
+</apex:page>

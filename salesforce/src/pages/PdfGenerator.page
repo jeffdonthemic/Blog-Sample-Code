@@ -1,0 +1,30 @@
+<apex:page controller="PdfGeneratorController">
+  <apex:sectionHeader title="PDF Example" subtitle="Attach a PDF" 
+    description="Example of how to attach a PDF to a record."/>
+
+  <apex:form >
+    <apex:pageBlock title="PDF Input">
+     
+      <apex:pageBlockButtons >
+        <apex:commandButton action="{!savePdf}" value="Save PDF"/>
+      </apex:pageBlockButtons>
+      <apex:pageMessages />
+       
+      <apex:pageBlockSection >
+       
+        <apex:pageBlockSectionItem >
+            <apex:outputLabel value="File Name" for="pdfName"/>
+          <apex:inputText value="{!pdfName}" id="pdfName"/>
+        </apex:pageBlockSectionItem>
+        
+        <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Account ID" for="id"/>
+          <apex:inputText value="{!parentId}" id="id"/>
+        </apex:pageBlockSectionItem>
+       
+      </apex:pageBlockSection>
+
+    </apex:pageBlock>
+  </apex:form>
+
+</apex:page>

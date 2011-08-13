@@ -1,0 +1,8 @@
+<apex:page standardController="Contact">
+  <apex:pageBlock title="My Contact Details">
+      <apex:outputField value="{!contact.AccountId}"/>
+    <p>Hello {!contact.FirstName}</p>
+  </apex:pageBlock>                   
+  <apex:detail relatedList="false" />
+
+</apex:page>

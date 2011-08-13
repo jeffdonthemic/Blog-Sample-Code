@@ -1,0 +1,121 @@
+<apex:page controller="ContactSearchController" sidebar="false">
+
+	<apex:form >
+	<apex:pageMessages id="errors" />
+	
+	<apex:pageBlock title="Find Me A Customer!" mode="edit">
+		
+	<table width="100%" border="0">
+	<tr>  
+		<td width="200" valign="top">
+	
+			<apex:pageBlock title="Parameters" mode="edit" id="criteria">
+			
+			<script type="text/javascript">
+			function doSearch() {
+				searchServer(
+					document.getElementById("firstName").value,
+					document.getElementById("lastName").value,
+					document.getElementById("accountName").value,
+					document.getElementById("technology").options[document.getElementById("technology").selectedIndex].value
+					);
+			}
+			</script> 
+			
+			<apex:actionFunction name="searchServer" action="{!runSearch}" rerender="results,debug,errors">
+			    <apex:param name="firstName" value="" />
+			    <apex:param name="lastName" value="" />
+			    <apex:param name="accountName" value="" />
+			    <apex:param name="technology" value="" />
+			</apex:actionFunction>
+			    
+			<table cellpadding="2" cellspacing="2">
+			<tr>
+				<td style="font-weight:bold;">First Name<br/>
+				<input type="text" id="firstName" onkeyup="doSearch();"/>
+				</td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;">Last Name<br/>
+				<input type="text" id="lastName" onkeyup="doSearch();"/>
+				</td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;">Account<br/>
+				<input type="text" id="accountName" onkeyup="doSearch();"/>
+				</td>
+			</tr>
+			<tr>
+				<td style="font-weight:bold;">Interested Technologies<br/>
+					<select id="technology" onchange="doSearch();">
+						<option value=""></option>
+						<apex:repeat value="{!technologies}" var="tech">
+							<option value="{!tech}">{!tech}</option>
+						</apex:repeat>
+					</select>
+				</td>
+			</tr>
+			</table>
+			
+			</apex:pageBlock>
+	
+		</td>
+		<td valign="top">
+		
+		<apex:pageBlock mode="edit" id="results">
+								
+				<apex:pageBlockTable value="{!contacts}" var="contact">
+				
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="First Name" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="firstName" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!contact.firstName}"/>
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Last Name" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="lastName" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!contact.lastName}"/>
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Account" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="account.name" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!contact.account.name}"/>
+            </apex:column>
+            
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Technologies" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="interested_technologies__c" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!contact.Interested_Technologies__c}"/>
+            </apex:column>
+						
+				</apex:pageBlockTable>
+								
+		</apex:pageBlock>
+		
+		</td>
+	</tr>
+	</table>
+	
+	<apex:pageBlock title="Debug - SOQL" id="debug">
+	    <apex:outputText value="{!debugSoql}" />           
+	</apex:pageBlock>		
+  
+	</apex:pageBlock>
+
+	</apex:form>
+
+</apex:page>

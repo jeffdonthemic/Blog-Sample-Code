@@ -1,0 +1,49 @@
+<apex:page standardController="Opportunity" extensions="MultiSelectController">
+     <apex:sectionHeader title="Opportunity" subtitle="{!opportunity.name}"/>
+     <apex:form >
+     <apex:pageBlock title="Opportunity" mode="edit">
+ 
+         <apex:outputText value="{!opportunity.Cat1__c}" rendered="false"/>
+         <apex:outputText value="{!opportunity.Cat2__c}" rendered="false"/>
+         <apex:outputText value="{!opportunity.Cat3__c}" rendered="false"/> 
+ 
+          <apex:pageBlockButtons location="both">
+               <apex:commandButton value="Save" action="{!save}" />
+               <apex:commandButton value="Cancel" action="{!cancel}" />
+          </apex:pageBlockButtons>
+          <apex:pageMessages />       
+ 
+          <apex:pageBlockSection title="Master Categories" columns="1">
+ 
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Category 1" for="cbxlevel1"/>
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                    <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                    <apex:selectList value="{!selectedLevel1}" id="cbxlevel1" size="1" required="true">
+                        <apex:selectOptions value="{!level1items}"/>
+                        <apex:actionSupport event="onchange" rerender="cbxlevel2"/>
+                    </apex:selectList>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+ 
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Category 2" for="cbxlevel2"/>
+                    <apex:selectList value="{!selectedLevel2}" id="cbxlevel2" size="1">
+                        <apex:selectOptions value="{!level2items}"/>
+                        <apex:actionSupport event="onchange" rerender="cbxlevel3"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+ 
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Category 3" for="cbxlevel3"/>
+                    <apex:selectList value="{!selectedLevel3}" id="cbxlevel3" size="1">
+                        <apex:selectOptions value="{!level3items}"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+ 
+          </apex:pageBlockSection>
+ 
+     </apex:pageBlock>
+     </apex:form>   
+ 
+</apex:page>

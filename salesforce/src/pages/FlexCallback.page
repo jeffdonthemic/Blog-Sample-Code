@@ -1,0 +1,24 @@
+<apex:page controller="FlexCallbackController">
+    <script language="JavaScript" type="text/javascript">
+        function updateHiddenValue(value, eId){        
+            var e = document.getElementById(eId);
+            e.value = value;
+        }
+    </script>
+     <apex:sectionHeader title="Flex / Javascript Callback Example"/>
+     <apex:form >
+     <apex:pageBlock id="flexBlock">
+     
+          <apex:pageBlockSection title="Flex Section"> 
+                <apex:flash src="{!$Resource.FlexCallback}"
+                    width="300" height="100"
+                    flashvars="callbackFunction=updateHiddenValue&domId={!$Component.callbackSection.myField}" />
+          </apex:pageBlockSection>         
+          
+          <apex:pageBlockSection title="Javascript Callback Section" id="callbackSection">
+                <apex:inputText id="myField" value="{!callbackText}" />
+          </apex:pageBlockSection>
+                
+     </apex:pageBlock>
+     </apex:form>
+</apex:page>

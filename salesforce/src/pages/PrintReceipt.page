@@ -1,0 +1,13 @@
+<apex:page standardController="Contact" extensions="PrintReceiptController" action="{!init}"> 
+
+	<script language="JavaScript">
+	var myReceipts=new Array("{!img}");
+	
+	for (var i=0;i<1;i++) {
+		document.write('<img src="'+myReceipts[i]+'" border="0"/><br>');
+	}
+	
+	
+	</script>
+
+</apex:page>

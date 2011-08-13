@@ -1,0 +1,20 @@
+<apex:page controller="ContactCreateController">
+    <apex:sectionHeader title="Visualforce Example" subtitle="Create a Contact"/>
+
+    <apex:form >
+        <apex:pageMessages /> <!-- this is where the error messages will appear -->
+        <apex:pageBlock title="Contact Info">
+        
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!save}" value="Save"/>
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection showHeader="false" columns="2">
+                <apex:inputField value="{!contact.firstName}" />
+                <apex:inputField value="{!contact.lastName}" />
+                <apex:inputField value="{!contact.email}" />
+            </apex:pageBlockSection>
+
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,45 @@
+<apex:page controller="RestDemoController" tabStyle="Contact">
+	<apex:sectionHeader title="Yahoo Maps Geocoding" subtitle="REST Demo (XML)"/>
+
+     <apex:form >
+     <apex:pageBlock >
+    
+          <apex:pageBlockButtons >
+              <apex:commandButton action="{!submit}" value="Submit" 
+                   rerender="resultsPanel" status="status"/>
+          </apex:pageBlockButtons>
+          <apex:pageMessages />
+              
+          This example calls Yahoo! Map's geocoding REST service with the address 
+          you provide below.<p/>     
+              
+          <apex:pageBlockSection >
+               <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="address">Address</apex:outputLabel>
+                    <apex:inputText id="address" value="{!address}"/>
+               </apex:pageBlockSectionItem>
+          </apex:pageBlockSection>
+          
+          <apex:pageBlockSection >
+               <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="city">City</apex:outputLabel>
+                    <apex:inputText id="city" value="{!city}"/>
+               </apex:pageBlockSectionItem>
+          </apex:pageBlockSection>
+          
+          <apex:pageBlockSection >
+               <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="state">State</apex:outputLabel>
+                    <apex:inputText id="state" value="{!state}"/>
+               </apex:pageBlockSectionItem>
+          </apex:pageBlockSection><br/>
+              
+          <apex:actionStatus id="status" startText="Fetching map..."/>
+          <apex:outputPanel id="resultsPanel">
+               <apex:outputText value="{!geoAddress}"/>
+          </apex:outputPanel>
+
+     </apex:pageBlock>
+     </apex:form>
+
+</apex:page>

@@ -1,0 +1,44 @@
+<apex:page controller="ActionSupportExampleController">
+
+	<script type="text/javascript">
+		function start() {
+			document.getElementById("processingStatus").innerHTML = "Process started...";
+			document.getElementById("thankyouDiv").innerHTML = "";
+		}
+		function stop() {
+			document.getElementById("processingStatus").innerHTML = "";
+			document.getElementById("thankyouDiv").innerHTML = "Processing complete";
+		}
+	</script>
+
+	<apex:outputPanel id="pageMessage">
+		<apex:PageMessages /> 
+	</apex:outputPanel>
+	
+	<apex:actionStatus id="status" onStart="start();" onStop="stop,stop();">
+		<apex:facet name="stop">
+			<h1>Idle... waiting...</h1>
+		</apex:facet>
+	</apex:actionStatus>
+	
+	<div id="processingStatus"></div>
+	
+     <apex:form >
+
+		Please enter your name and click off of the text box:
+		<apex:inputText value="{!yourName}" >
+		
+			<apex:actionSupport action="{!processName}"
+				event="onblur" reRender="pageMessage,thankyou" status="status"/>
+		
+		</apex:inputText>
+
+     </apex:form>
+     
+     <div id="thankyouDiv"></div>
+     
+	<apex:outputPanel id="thankyou">
+		<apex:outputText value="{!thankYouMsg}"/>
+	</apex:outputPanel>
+     
+</apex:page>

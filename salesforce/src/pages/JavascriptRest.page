@@ -1,0 +1,16 @@
+<apex:page >
+    <apex:includeScript value="{!URLFOR($Resource.jQueryStatic, 'jquery.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.jQueryStatic, 'forcetk.js')}"  />
+    <script type="text/javascript">
+        // Get a reference to jQuery that we can work with
+        $j = jQuery.noConflict();
+
+        // Get an instance of the REST API client
+        var client = new forcetk.Client('{!$Api.Session_ID}');
+
+        client.query("SELECT Name FROM Account LIMIT 1",function(response){
+            $j('#accountname').html(response.records[0].Name);
+        });
+    </script>
+    <p>The first account I see is <span id="accountname"></span>.</p>
+</apex:page>

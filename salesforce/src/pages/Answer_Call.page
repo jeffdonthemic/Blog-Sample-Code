@@ -1,0 +1,7 @@
+<apex:page showHeader="false" contentType="text/xml">
+<Response>
+    <Say>Thank you for calling the hackathon hotline. Leave a message after the monkey tone.</Say>
+    <Play>http://demo.twilio.com/hellomonkey/monkey.mp3</Play>
+    <Record maxLength="5" action="http://kyle-twilio-developer-edition.na7.force.com/Record_Call" />        
+</Response>
+</apex:page>
